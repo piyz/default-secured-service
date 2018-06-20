@@ -12,25 +12,18 @@ import java.security.Principal;
 public class UserController {
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String hello(){
+    public String hello(Model model, Principal principal){
+        model.addAttribute("hi", "You are logged in as " + principal.getName());
         return "hello";
     }
 
     @RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
-    public ModelAndView login(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("login");
-        return modelAndView;
+    public String login(){
+        return "login";
     }
 
     @RequestMapping(value = "/hello/admin", method = RequestMethod.GET)
     public String admin(){
         return "admin";
-    }
-
-    @RequestMapping("/log")
-    public String log(ModelAndView model, Principal principal) {
-        model.addObject("hi", "You are logged in as " + principal.getName());
-        return "log";
     }
 }
