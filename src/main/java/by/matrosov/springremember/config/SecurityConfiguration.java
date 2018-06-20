@@ -44,6 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/hello").hasAnyAuthority("ADMIN", "USER", "MODERATOR")
+                .antMatchers("/hello/admin").hasAuthority("ADMIN")
                 .and()
                 .formLogin().loginPage("/login").defaultSuccessUrl("/hello")
                 .and()
